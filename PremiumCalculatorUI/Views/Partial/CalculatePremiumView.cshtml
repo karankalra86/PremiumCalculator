@@ -1,0 +1,51 @@
+﻿@model PremiumCalculatorUI.ViewModels.MemberViewModel
+<br />
+<br />
+
+<div class="container">
+    <input type="hidden" id="hdntermid" value="" />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+        <!--  col-md-6   -->
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Age)
+                @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Age)
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateOfBirth)
+                @Html.TextAreaFor(m => m.DateOfBirth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Age)
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Occupation)
+                @Html.DropDownListFor(m => m.SelectedOccupation, new SelectList(Model.Occupation),"Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Occupation)
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SumInsured)
+                @Html.TextBoxFor(m => m.SumInsured, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SumInsured)
+            </div>
+        </div>
+        <!--  col-md-6   -->
+    </div>
+    <button type="submit" value="submit" class="btn btn-primary">Calculate Premium</button>
+</div>

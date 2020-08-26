@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PremiumCalculatorAPI.Tests")]
+[assembly: AssemblyTitle("PremiumCalculatorUI.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hewlett-Packard")]
-[assembly: AssemblyProduct("PremiumCalculatorAPI.Tests")]
+[assembly: AssemblyProduct("PremiumCalculatorUI.Tests")]
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7f79af0c-a910-461d-be1d-122206625c20")]
+[assembly: Guid("9f41a99e-8842-48d1-afe6-e88a24d6f0c2")]
 
 // Version information for an assembly consists of the following four values:
 //

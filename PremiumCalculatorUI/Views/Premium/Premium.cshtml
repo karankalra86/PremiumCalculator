@@ -1,0 +1,15 @@
+﻿@model PremiumCalculatorUI.ViewModels.MemberViewModel
+
+@{
+    ViewBag.Title = "Calculate Premium";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Premium", "Glossary", FormMethod.Post, new { id = "glossary-form" }))
+{
+    @Html.ValidationSummary(true)
+
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("~/Views/Partial/CalculatePremiumView.cshtml", Model);
+}

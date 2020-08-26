@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using PremiumCalculatorAPI;
 using PremiumCalculatorAPI.Controllers;
 using PremiumCalculatorData.Repository;
 using Rhino.Mocks;
