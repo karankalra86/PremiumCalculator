@@ -2,9 +2,42 @@
 <br />
 <br />
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Occupation").change(function () {
+            $('#lblError').text('');
+            if ($("#Occupation").val() == "") {
+                $('#spnPremium').val(0);
+                $('#spnPremium').text('0');
+                return;
+            }
+            if ($('#Name').val() != "" && $('#Age').val() != "" && $('#Age').val() != "0" && $('#DateOfBirth').val() != "" &&
+                $("#SumInsured").val() != "" && $("#SumInsured").val() != "0") {
+                var data = new Object();
+                data.Name = $('#Name').val();
+                data.Age = $('#Age').val();
+                data.DateOfBirth = $('#DateOfBirth').val();
+                data.Occupation = $('#Occupation').val();
+                data.SumInsured = $('#SumInsured').val();
+
+                console.log('input : ' + JSON.stringify(data));
+
+                $.post("http://localhost:8013/api/Premium", data, function (premium) { $('#spnPremium').val(premium); $('#spnPremium').text(premium) }, "json")
+            }
+            else {
+                $('#lblError').text("Please fill all fields to calculate the Premium");
+            }
+        });
+    });
+</script>
+
 <div class="container">
     <input type="hidden" id="hdntermid" value="" />
+    <input type="hidden" id="hdnModel" />
     <div class="row">
+        <div class="col-md-12">
+            <label id="lblError"></label>
+        </div>
         <div class="col-md-12">
             <div class="form-group">
                 @Html.LabelFor(m => m.Name)
@@ -25,15 +58,15 @@
         <div class="col-md-12">
             <div class="form-group">
                 @Html.LabelFor(m => m.DateOfBirth)
-                @Html.TextAreaFor(m => m.DateOfBirth, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Age)
+                @Html.EditorFor(m => m.DateOfBirth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.DateOfBirth)
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
                 @Html.LabelFor(m => m.Occupation)
-                @Html.DropDownListFor(m => m.SelectedOccupation, new SelectList(Model.Occupation),"Select", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Occupation, new SelectList(Model.OccupationList), "Select", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Occupation)
             </div>
         </div>
@@ -43,6 +76,12 @@
                 @Html.LabelFor(m => m.SumInsured)
                 @Html.TextBoxFor(m => m.SumInsured, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.SumInsured)
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.Label("Calculated premium is : ")
+                <b><label id="spnPremium">@Convert.ToInt32(Model.Premium)</label></b>
             </div>
         </div>
         <!--  col-md-6   -->

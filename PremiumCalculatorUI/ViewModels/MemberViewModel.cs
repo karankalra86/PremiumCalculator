@@ -25,27 +25,29 @@ namespace PremiumCalculatorUI.ViewModels
         /// DateOfBirth
         /// </summary>
         [Required(ErrorMessage = "Please Enter Date of Birth")]
-        [DataType(DataType.DateTime)]
-        public DateTime DateOfBirth { get; set; }
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        public DateTime ? DateOfBirth { get; set; }
+
+        /// <summary>
+        /// Occupation
+        /// </summary>
+        public List<string> OccupationList { get; set; }
 
         /// <summary>
         /// Occupation
         /// </summary>
         [Required(ErrorMessage = "Please select Occupation")]
-        public List<string> Occupation { get; set; }
-
-        /// <summary>
-        /// Occupation
-        /// </summary>
-        public string SelectedOccupation { get; set; }
+        public string Occupation { get; set; }
 
         /// <summary>
         /// Sum Insured
         /// </summary>
         [Required(ErrorMessage = "Please Enter Sum insured")]
         [Range(1, Int32.MaxValue, ErrorMessage = "Value should be greater than 0")]
+        [Display(Name = "Sum Insured")]
         public decimal SumInsured { get; set; }
 
-        public decimal MonthlyPremium { get; set; }
+        public decimal Premium { get; set; }
     }
 }

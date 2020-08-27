@@ -38,7 +38,7 @@ namespace PremiumCalculatorAPI.Controllers
         /// <param name="objMemberModel"></param>
         /// <returns></returns>
         [HttpPost]
-        public HttpResponseMessage CalculatePremium(MemberModel objMemberModel)
+        public HttpResponseMessage CalculatePremium([FromBody]MemberModel objMemberModel)
         {
             try
             {

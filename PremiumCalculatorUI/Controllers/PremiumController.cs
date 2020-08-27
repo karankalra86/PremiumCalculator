@@ -5,6 +5,7 @@ using PremiumCalculatorWrapper;
 using PremiumCalcModels;
 using PremiumCalculatorUI.ViewModels;
 using System.Configuration;
+using System;
 
 namespace PremiumCalculatorUI.Controllers
 {
@@ -12,12 +13,13 @@ namespace PremiumCalculatorUI.Controllers
     {
         private IPremiumCalcWrapper _iPremiumCalcWrapper;
 
-        public string ApiURL { get; set; }
+        public string BaseURL { get; set; }
+        public string OperationURL { get; set; }
 
         public PremiumController()
         {
-            ApiURL = ConfigurationManager.AppSettings["PremiumCalcApiBaseURL"] + ConfigurationManager.AppSettings["OccupationURL"];
-            _iPremiumCalcWrapper = new PremiumCalcWrapper(ApiURL);
+            BaseURL = ConfigurationManager.AppSettings["PremiumCalcApiBaseURL"];
+            _iPremiumCalcWrapper = new PremiumCalcWrapper(BaseURL);
         }
 
         public PremiumController(IPremiumCalcWrapper iPremiumCalcWrapper)
@@ -35,26 +37,30 @@ namespace PremiumCalculatorUI.Controllers
         
         private MemberViewModel GetOccupations()
         {
+            _iPremiumCalcWrapper.OperationURL = ConfigurationManager.AppSettings["OccupationURL"];
             Task<List<string>> occupationList = _iPremiumCalcWrapper.GetOccupations();
             MemberViewModel objMemberModel = new MemberViewModel
             {
-                Occupation = occupationList.Result
+                OccupationList = occupationList.Result
             };
+            TempData["occupationList"] = occupationList.Result;
             return objMemberModel;
         }
 
-     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Premium(MemberViewModel objMemberViewModel)
         {
+            _iPremiumCalcWrapper.OperationURL = ConfigurationManager.AppSettings["CalculatePremiumURL"];
+            objMemberViewModel.OccupationList = (List<string>)TempData["occupationList"];   
             if (ModelState.IsValid)
             {
                 var memberModel = MapViewModelToModel(objMemberViewModel);
                 Task<decimal> premiumValue = _iPremiumCalcWrapper.CalculatePremium(memberModel);
                 premiumValue.Wait();
-                objMemberViewModel.MonthlyPremium = premiumValue.Result;
+                objMemberViewModel.Premium = premiumValue.Result;
             }
+            TempData["occupationList"] = objMemberViewModel.OccupationList;
             return View(objMemberViewModel);
         }
 

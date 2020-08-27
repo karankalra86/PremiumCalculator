@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using PremiumCalculatorUI.Filters;
+using System.Web.Mvc;
 
 namespace PremiumCalculatorUI
 {
@@ -7,6 +8,7 @@ namespace PremiumCalculatorUI
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new ExceptionHandlingFilter());
         }
     }
 }

@@ -12,7 +12,7 @@ namespace PremiumCalculatorUI.Helpers
     {
         public MappingProfile()
         {
-            CreateMap<MemberViewModel, MemberModel>().ForMember(p => p.Occupation, opt => opt.MapFrom(c => c.SelectedOccupation));
+            CreateMap<MemberViewModel, MemberModel>().ForMember(p => p.Occupation, opt => opt.MapFrom(c => c.Occupation));
         }
 
         

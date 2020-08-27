@@ -11,20 +11,21 @@ namespace PremiumCalculatorWrapper
 {
     public class PremiumCalcWrapper : IPremiumCalcWrapper
     {
-        public PremiumCalcWrapper(string strApiURL)
+        public string BaseURL { get; set; }
+        public string OperationURL { get; set; }
+
+        public PremiumCalcWrapper(string strBaseURL)
         {
-            ApiURL = strApiURL;
+            BaseURL = strBaseURL;
         }
-
-        public string ApiURL { get; set; }
-
+               
         public Task<decimal> CalculatePremium(MemberModel objMemberModel)
         {
             var accessToken = string.Empty;
             using (var client = CreateClient(accessToken))
             {
                 HttpContent content = new StringContent(JsonConvert.SerializeObject(objMemberModel), Encoding.UTF8, "application/json");
-                var response = client.PostAsync(ApiURL, content).Result;
+                var response = client.PostAsync(BaseURL + OperationURL, content).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     return null;
@@ -46,7 +47,7 @@ namespace PremiumCalculatorWrapper
             var accessToken = string.Empty;
             using (var client = CreateClient(accessToken))
             {
-                var response = client.GetAsync(ApiURL).Result;
+                var response = client.GetAsync(BaseURL + OperationURL).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     return null;
