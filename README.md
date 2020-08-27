@@ -48,3 +48,7 @@ This solution consists of following projects
     
 7) PremiumCalculatorUI.Tests :
     This is the Unit test project for UI, built on Microsoft unit test framework consuming Rhino Mock.
+
+
+NOTE:
+Screen Recordings available in "Recordings" folder.
