@@ -110,6 +110,10 @@
       <Project>{302f4fca-77cf-4297-ac51-5c17b2b4c5d4}</Project>
       <Name>PremiumCalcModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PremiumCalculatorLogger\PremiumCalculatorLogger.csproj">
+      <Project>{6623D3AD-0AEB-4183-BAC8-063CD4EBF8DE}</Project>
+      <Name>PremiumCalculatorLogger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PremiumCalculatorUI\PremiumCalculatorUI.csproj">
       <Project>{A3303AC8-361E-4199-8435-CF22761E94E5}</Project>
       <Name>PremiumCalculatorUI</Name>

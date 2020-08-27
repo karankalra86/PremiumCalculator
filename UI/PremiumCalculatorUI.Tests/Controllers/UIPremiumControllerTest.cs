@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PremiumCalcModels;
+using PremiumCalculatorLogger;
 using PremiumCalculatorUI.Controllers;
 using PremiumCalculatorUI.ViewModels;
 using PremiumCalculatorWrapper;
@@ -15,6 +16,17 @@ namespace PremiumCalculatorUI.Tests.Controllers
     [TestClass]
     public class UIPremiumControllerTest
     {
+        IPremiumCalcWrapper mocWrapper;
+        ILogger mocLogger;
+
+        [TestInitialize]
+        public void MyTestInitialize()
+        {
+            mocWrapper = MockRepository.GenerateMock<IPremiumCalcWrapper>();
+            mocLogger = MockRepository.GenerateMock<ILogger>();
+            mocLogger.Stub(x => x.WriteLog(string.Empty, false)).IgnoreArguments();
+        }
+
         [TestMethod]
         public void CalculatePremiumTest()
         {
@@ -33,8 +45,8 @@ namespace PremiumCalculatorUI.Tests.Controllers
 
 
             // Arrange
-            var mockManager = MockRepository.GenerateMock<IPremiumCalcWrapper>();
-            mockManager.Expect(x => x.CalculatePremium(null)).IgnoreArguments().Return(Task.FromResult(expectedPremium)).Repeat.Any();
+            mocWrapper.Expect(x => x.CalculatePremium(null)).IgnoreArguments().Return(Task.FromResult(expectedPremium)).Repeat.Any();
+            
 
             Mapper.Initialize(cfg =>
             {
@@ -42,13 +54,13 @@ namespace PremiumCalculatorUI.Tests.Controllers
             });
 
             // Act
-            var objPremiumController = new PremiumController(mockManager);
+            var objPremiumController = new PremiumController(mocWrapper, mocLogger);
             var result = objPremiumController.Premium(objMemberViewModel);
 
             // Assert
             var actualPremium = ((MemberViewModel)((ViewResultBase)result).Model).Premium;
             Assert.AreEqual(expectedPremium, actualPremium);
-            mockManager.VerifyAllExpectations();
+            mocWrapper.VerifyAllExpectations();
         }
 
         [TestMethod]
@@ -57,16 +69,15 @@ namespace PremiumCalculatorUI.Tests.Controllers
             List<string> expectedOccupations = new List<string>() { "Florist", "Mechanic", "Farmer" };
 
             // Arrange
-            var mockManager = MockRepository.GenerateMock<IPremiumCalcWrapper>();
-            mockManager.Expect(x => x.GetOccupations()).IgnoreArguments().Return(Task.FromResult(expectedOccupations)).Repeat.Any();
+            mocWrapper.Expect(x => x.GetOccupations()).IgnoreArguments().Return(Task.FromResult(expectedOccupations)).Repeat.Any();
 
             // Act
-            var objPremiumController = new PremiumController(mockManager);
+            var objPremiumController = new PremiumController(mocWrapper, mocLogger);
             var result = objPremiumController.Premium(new MemberModel());
 
             // Assert
             Assert.AreEqual(expectedOccupations.Count, ((MemberViewModel)((ViewResultBase)result).Model).OccupationList.Count);
-            mockManager.VerifyAllExpectations();
+            mocWrapper.VerifyAllExpectations();
         }
     }
 }

@@ -22,7 +22,9 @@
 
                 console.log('input : ' + JSON.stringify(data));
 
-                $.post("http://localhost:8013/api/Premium", data, function (premium) { $('#spnPremium').val(premium); $('#spnPremium').text(premium) }, "json")
+                var URL = '@System.Configuration.ConfigurationManager.AppSettings["PremiumCalcApiBaseURL"]@System.Configuration.ConfigurationManager.AppSettings["CalculatePremiumURL"]';
+
+                $.post(URL, data, function (premium) { $('#spnPremium').val(premium); $('#spnPremium').text(premium) }, "json")
             }
             else {
                 $('#lblError').text("Please fill all fields to calculate the Premium");
@@ -32,59 +34,89 @@
 </script>
 
 <div class="container">
-    <input type="hidden" id="hdntermid" value="" />
-    <input type="hidden" id="hdnModel" />
     <div class="row">
         <div class="col-md-12">
-            <label id="lblError"></label>
+            <div class="form-group col-md-2">
+            </div>
+            <div class="form-group col-md-10">
+                <label id="lblError" style="color:red"></label>
+            </div>
         </div>
         <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group col-md-2">
                 @Html.LabelFor(m => m.Name)
+            </div>
+            <div class="form-group col-md-3">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+            <div class="form-group col-md-7">
+                @Html.ValidationMessageFor(m => m.Name, "", new { @style = "color:red" })
             </div>
         </div>
         <!--  col-md-6   -->
-
         <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group col-md-2">
                 @Html.LabelFor(m => m.Age)
+            </div>
+            <div class="form-group col-md-3">
                 @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Age)
+            </div>
+            <div class="form-group col-md-7">
+                @Html.ValidationMessageFor(m => m.Age, "", new { @style = "color:red" })
             </div>
         </div>
 
         <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group  col-md-2">
                 @Html.LabelFor(m => m.DateOfBirth)
+            </div>
+            <div class="form-group col-md-3">
                 @Html.EditorFor(m => m.DateOfBirth, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.DateOfBirth)
+            </div>
+            <div class="form-group col-md-7">
+                @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @style = "color:red" })
             </div>
         </div>
 
         <div class="col-md-12">
-            <div class="form-group">
-                @Html.LabelFor(m => m.Occupation)
-                @Html.DropDownListFor(m => m.Occupation, new SelectList(Model.OccupationList), "Select", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Occupation)
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group col-md-2">
                 @Html.LabelFor(m => m.SumInsured)
+            </div>
+            <div class="form-group col-md-3">
                 @Html.TextBoxFor(m => m.SumInsured, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.SumInsured)
+            </div>
+            <div class="form-group col-md-7">
+                @Html.ValidationMessageFor(m => m.SumInsured, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group  col-md-2">
+                @Html.LabelFor(m => m.Occupation)
+            </div>
+            <div class="form-group col-md-3">
+                @Html.DropDownListFor(m => m.Occupation, new SelectList(Model.OccupationList), "Select", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-7">
+                @Html.ValidationMessageFor(m => m.Occupation, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group col-md-2">
+                @Html.Label("Calculated premium is :")
+
+            </div>
+            <div class="form-group col-md-10">
+                <b><label id="spnPremium">@Convert.ToInt32(Model.Premium)</label></b>
             </div>
         </div>
         <div class="col-md-12">
-            <div class="form-group">
-                @Html.Label("Calculated premium is : ")
-                <b><label id="spnPremium">@Convert.ToInt32(Model.Premium)</label></b>
+            <div class="form-group col-md-2"></div>
+            <div class="form-group col-md-10">
+                <button type="submit" value="submit" class="btn btn-primary">Calculate Premium</button>
             </div>
         </div>
         <!--  col-md-6   -->
     </div>
-    <button type="submit" value="submit" class="btn btn-primary">Calculate Premium</button>
 </div>

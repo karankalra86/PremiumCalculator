@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1A35325D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{5A3FD62C-1173-4FD1-BCBF-EFB4E79191E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PremiumCalculatorData", "PremiumCalculatorData\PremiumCalculatorData.csproj", "{34D52374-B92C-4828-92EE-B3346F619F11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PremiumCalculatorData", "PremiumCalculatorData\PremiumCalculatorData.csproj", "{34D52374-B92C-4828-92EE-B3346F619F11}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{3F88D254-2758-4BEF-92BE-3A07E0BE717D}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PremiumCalculatorWrapper", "PremiumCalculatorWrapper\PremiumCalculatorWrapper.csproj", "{EF3A1361-796A-454A-B2AD-8411AF7D977D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PremiumCalcModels", "PremiumCalcModels\PremiumCalcModels.csproj", "{302F4FCA-77CF-4297-AC51-5C17B2B4C5D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PremiumCalculatorLogger", "PremiumCalculatorLogger\PremiumCalculatorLogger.csproj", "{6623D3AD-0AEB-4183-BAC8-063CD4EBF8DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{302F4FCA-77CF-4297-AC51-5C17B2B4C5D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{302F4FCA-77CF-4297-AC51-5C17B2B4C5D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{302F4FCA-77CF-4297-AC51-5C17B2B4C5D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6623D3AD-0AEB-4183-BAC8-063CD4EBF8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6623D3AD-0AEB-4183-BAC8-063CD4EBF8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6623D3AD-0AEB-4183-BAC8-063CD4EBF8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6623D3AD-0AEB-4183-BAC8-063CD4EBF8DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{754C244A-F436-471F-86DE-8A2E520F4A27} = {1A35325D-3DBB-4588-BAD8-60F61DEE0628}
 		{EF3A1361-796A-454A-B2AD-8411AF7D977D} = {FA523D9C-1894-4F93-A753-A6779F1FF7A7}
 		{302F4FCA-77CF-4297-AC51-5C17B2B4C5D4} = {FA523D9C-1894-4F93-A753-A6779F1FF7A7}
+		{6623D3AD-0AEB-4183-BAC8-063CD4EBF8DE} = {FA523D9C-1894-4F93-A753-A6779F1FF7A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C869B9E-A02C-4C3A-947E-C687FD310D16}

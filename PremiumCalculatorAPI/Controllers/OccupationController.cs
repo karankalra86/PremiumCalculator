@@ -12,15 +12,7 @@ namespace PremiumCalculatorAPI.Controllers
     public class OccupationController : ApiController
     {
         IOccupationRepository _repository;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public OccupationController()
-        {
-            _repository = new OccupationRepository();
-        }
-
+        
         /// <summary>
         /// 
         /// </summary>

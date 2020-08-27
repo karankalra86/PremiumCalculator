@@ -5,33 +5,29 @@ using PremiumCalculatorWrapper;
 using PremiumCalcModels;
 using PremiumCalculatorUI.ViewModels;
 using System.Configuration;
-using System;
+using PremiumCalculatorLogger;
 
 namespace PremiumCalculatorUI.Controllers
 {
     public class PremiumController : Controller
     {
         private IPremiumCalcWrapper _iPremiumCalcWrapper;
+        private ILogger _iLogger;
 
-        public string BaseURL { get; set; }
         public string OperationURL { get; set; }
 
-        public PremiumController()
-        {
-            BaseURL = ConfigurationManager.AppSettings["PremiumCalcApiBaseURL"];
-            _iPremiumCalcWrapper = new PremiumCalcWrapper(BaseURL);
-        }
-
-        public PremiumController(IPremiumCalcWrapper iPremiumCalcWrapper)
+        public PremiumController(IPremiumCalcWrapper iPremiumCalcWrapper, ILogger logger)
         {
             _iPremiumCalcWrapper = iPremiumCalcWrapper;
+            _iLogger = logger;
         }
-
 
         [HttpGet]
         public ActionResult Premium(MemberModel objMemberModel)
         {
+            _iLogger.WriteLog("Premium Calculator : Starting fetching occupations", false);
             var memberViewModel = GetOccupations();
+            _iLogger.WriteLog("Premium Calculator : Returning occupations", false);
             return View(memberViewModel);
         }
         

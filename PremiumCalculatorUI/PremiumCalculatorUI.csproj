@@ -49,6 +49,9 @@
       <HintPath>..\packages\AutoMapper.6.2.0\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -129,7 +132,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GlobalHelper.cs" />
     <Compile Include="Helpers\MappingProfile.cs" />
+    <Compile Include="Helpers\NinjectControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MemberViewModel.cs" />
   </ItemGroup>
@@ -190,6 +195,10 @@
     <ProjectReference Include="..\PremiumCalcModels\PremiumCalcModels.csproj">
       <Project>{302f4fca-77cf-4297-ac51-5c17b2b4c5d4}</Project>
       <Name>PremiumCalcModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PremiumCalculatorLogger\PremiumCalculatorLogger.csproj">
+      <Project>{6623d3ad-0aeb-4183-bac8-063cd4ebf8de}</Project>
+      <Name>PremiumCalculatorLogger</Name>
     </ProjectReference>
     <ProjectReference Include="..\PremiumCalculatorWrapper\PremiumCalculatorWrapper.csproj">
       <Project>{ef3a1361-796a-454a-b2ad-8411af7d977d}</Project>

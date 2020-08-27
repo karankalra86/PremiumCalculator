@@ -17,14 +17,6 @@ namespace PremiumCalculatorAPI.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public PremiumController()
-        {
-            _repository = new OccupationRepository();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="objOccupationRepo"></param>
         public PremiumController(IOccupationRepository objOccupationRepo)
         {
